@@ -1,0 +1,125 @@
+.product-page {
+  padding: 28px 24px 64px;
+}
+
+.product-page__crumbs {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.product-page__crumbs a:hover {
+  color: var(--color-accent);
+}
+
+.product-page__layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
+}
+
+.product-page__media {
+  display: grid;
+  place-items: center;
+  height: 380px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  color: var(--color-accent);
+}
+
+.product-page__brand {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.product-page__info h1 {
+  font-size: 26px;
+  margin: 8px 0 14px;
+  max-width: 560px;
+}
+
+.product-page__volume,
+.product-page__sku {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.product-page__price {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  margin: 18px 0 20px;
+}
+
+.product-page__buy {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.qty-control button {
+  width: 38px;
+  height: 42px;
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.qty-control button:hover {
+  background: var(--color-surface);
+}
+
+.qty-control input {
+  width: 48px;
+  text-align: center;
+  height: 42px;
+  border: none;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  font-size: 15px;
+}
+
+.product-page__add {
+  padding: 12px 28px;
+}
+
+.product-page__description h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.product-page__description p {
+  color: var(--color-text-muted);
+  font-size: 14.5px;
+  max-width: 620px;
+}
+
+.product-page__related {
+  margin-top: 56px;
+}
+
+.product-page__related h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 860px) {
+  .product-page__layout {
+    grid-template-columns: 1fr;
+  }
+  .product-page__media {
+    height: 260px;
+  }
+}

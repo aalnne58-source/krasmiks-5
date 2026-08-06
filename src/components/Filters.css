@@ -1,0 +1,91 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  height: fit-content;
+}
+
+.filters__block h4 {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.filters__block ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filters__block ul button {
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+}
+
+.filters__block ul button:hover {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.filters__block ul button.is-active {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-dark);
+  font-weight: 600;
+}
+
+.filters__price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.filters__price-row input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+
+.filters__price-row span {
+  color: var(--color-text-muted);
+}
+
+.filters__slider {
+  width: 100%;
+  accent-color: var(--color-accent);
+}
+
+.filters__block select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  background: #fff;
+}
+
+.filters__reset {
+  width: 100%;
+  font-size: 13.5px;
+  padding: 10px;
+}
+
+@media (max-width: 900px) {
+  .filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .filters__block {
+    flex: 1 1 200px;
+  }
+}
