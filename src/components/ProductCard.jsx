@@ -11,7 +11,6 @@ export const formatPrice = (price) => {
 export default function ProductCard({ product }) {
   const productPath = product.slug ? `/product/${product.slug}` : `/product/${product.id || product.Артикул}`;
 
-  // Считываем новые названия колонок из прайс-листа клиента
   const name = product.Наименование || product.name || '';
   const brand = product.Бренд || product.brand || 'Автохимия';
   const rawPrice = product['Цена с НДС'] || product.price || 0;
@@ -19,21 +18,20 @@ export default function ProductCard({ product }) {
   const upperName = name.toUpperCase();
   const upperBrand = brand.toUpperCase();
 
-  // Автоматическое распределение 82 картинок от фрилансера по ключевым словам
   let imageNum = 1;
 
   if (upperBrand.includes('NOVOL')) {
-    imageNum = (Math.abs(name.length) % 15) + 1; // 1-15 для Novol
+    imageNum = (Math.abs(name.length) % 15) + 1;
   } else if (upperBrand.includes('MIPA') && upperName.includes('ЛАК')) {
-    imageNum = (Math.abs(name.length) % 10) + 16; // 16-25 для лаков Mipa
+    imageNum = (Math.abs(name.length) % 10) + 16;
   } else if (upperName.includes('ГРУНТ') || upperName.includes('PRIMER')) {
-    imageNum = (Math.abs(name.length) % 10) + 26; // 26-35 для грунтов
+    imageNum = (Math.abs(name.length) % 10) + 26;
   } else if (upperBrand.includes('SIA') || upperName.includes('КРУГ')) {
-    imageNum = (Math.abs(name.length) % 15) + 40; // 40-55 для SIA
+    imageNum = (Math.abs(name.length) % 15) + 40;
   } else if (upperName.includes('КЛЕЙ') || upperName.includes('ГЕРМЕТИК')) {
-    imageNum = (Math.abs(name.length) % 8) + 60;  // 60-68 для клеев
+    imageNum = (Math.abs(name.length) % 8) + 60;
   } else {
-    imageNum = (Math.abs(name.length) % 14) + 69; // Остальное равномерно
+    imageNum = (Math.abs(name.length) % 14) + 69;
   }
 
   const finalPhoto = `/products/${imageNum}.jpg`;
