@@ -15,6 +15,10 @@
   border-color: var(--color-accent);
 }
 
+.category-card__body {
+  min-width: 0;
+}
+
 .category-card__icon {
   display: grid;
   place-items: center;
@@ -36,4 +40,22 @@
   font-size: 13px;
   color: var(--color-text-muted);
   line-height: 1.45;
+}
+
+@media (max-width: 560px) {
+  .category-card {
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+  }
+  .category-card__icon {
+    width: 42px;
+    height: 42px;
+  }
+  .category-card__name {
+    font-size: 14.5px;
+  }
+  .category-card__desc {
+    font-size: 12.5px;
+  }
 }

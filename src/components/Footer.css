@@ -6,9 +6,9 @@
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr repeat(3, minmax(0, 1fr));
   gap: 32px;
-  padding: 48px 24px 32px;
+  padding-block: 48px 40px;
 }
 
 .site-footer__logo {
@@ -54,13 +54,35 @@
 
 .site-footer__bottom {
   border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 18px 24px;
+  padding-block: 20px;
   font-size: 12.5px;
+  line-height: 1.5;
   color: #82858e;
 }
 
 @media (max-width: 780px) {
   .site-footer__grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
+    padding-block: 40px 32px;
+  }
+  .site-footer__grid > :first-child {
+    grid-column: 1 / -1;
+  }
+  .site-footer__text {
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-footer {
+    margin-top: 40px;
+  }
+  .site-footer__grid {
+    gap: 28px 20px;
+    padding-block: 32px 24px;
+  }
+  .site-footer__bottom {
+    padding-block: 16px;
   }
 }

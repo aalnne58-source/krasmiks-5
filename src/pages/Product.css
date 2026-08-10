@@ -1,5 +1,5 @@
 .product-page {
-  padding: 28px 24px 64px;
+  padding-block: 32px 64px;
 }
 
 .product-page__crumbs {
@@ -14,7 +14,7 @@
 
 .product-page__layout {
   display: grid;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 380px minmax(0, 1fr);
   gap: 40px;
 }
 
@@ -117,9 +117,13 @@
 
 @media (max-width: 860px) {
   .product-page__layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
   }
   .product-page__media {
     height: 260px;
+  }
+  .product-page__related {
+    margin-top: 40px;
   }
 }

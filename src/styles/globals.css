@@ -83,7 +83,14 @@ input {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding-inline: 24px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  align-items: stretch;
 }
 
 .btn {
@@ -154,6 +161,13 @@ input {
 
 @media (max-width: 720px) {
   .container {
-    padding: 0 16px;
+    padding-inline: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 }

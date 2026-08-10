@@ -9,7 +9,7 @@ export default function CategoryCard({ category }) {
       <div className="category-card__icon">
         <CategoryIcon icon={category.icon} size={30} />
       </div>
-      <div>
+      <div className="category-card__body">
         <h3 className="category-card__name">{category.name}</h3>
         <p className="category-card__desc">{category.description}</p>
       </div>

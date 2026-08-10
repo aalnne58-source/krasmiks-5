@@ -52,12 +52,11 @@ export default function ProductCard({ product }) {
         {product.isNew && <span className="product-card__badge product-card__badge--new">Новинка</span>}
       </div>
 
-      <Link to={productPath} className="catalog_item-img-link" style={{ display: 'block', textAlign: 'center', background: '#fff', padding: '10px' }}>
+      <Link to={productPath} className="catalog_item-img-link">
         <img
           src={finalPhoto}
           alt={name}
           className="catalog_item-img"
-          style={{ width: '100%', height: '180px', objectFit: 'contain' }}
           loading="lazy"
           onError={(e) => {
             e.target.onerror = null;
@@ -67,7 +66,7 @@ export default function ProductCard({ product }) {
       </Link>
 
       <div className="catalog_item-desc">
-        <div className="catalog_item-brand" style={{ color: '#ff6b00', fontWeight: 'bold' }}>{brand}</div>
+        <div className="catalog_item-brand">{brand}</div>
         <Link to={productPath} className="catalog_item-title-link">
           <h3 className="catalog_item-title">{name}</h3>
         </Link>
@@ -76,7 +75,7 @@ export default function ProductCard({ product }) {
           <div className="catalog_item-price-block">
             <span className="catalog_item-price">{formatPrice(rawPrice)} ₽</span>
           </div>
-          <Link to={productPath} className="catalog_item-cart-btn" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Link to={productPath} className="catalog_item-cart-btn">
             🛒 Купить
           </Link>
         </div>

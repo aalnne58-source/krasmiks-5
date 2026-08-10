@@ -1,5 +1,5 @@
 .cart-page {
-  padding: 32px 24px 64px;
+  padding-block: 40px 64px;
 }
 
 .cart-page h1 {
@@ -13,7 +13,7 @@
   align-items: center;
   text-align: center;
   gap: 12px;
-  padding: 96px 24px;
+  padding-block: 96px;
 }
 
 .cart-page--empty p {
@@ -23,7 +23,7 @@
 
 .cart-page__layout {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: minmax(0, 1fr) 320px;
   gap: 28px;
   align-items: flex-start;
 }
@@ -184,7 +184,7 @@
 
 @media (max-width: 860px) {
   .cart-page__layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .cart-item {
     grid-template-columns: 44px 1fr;
