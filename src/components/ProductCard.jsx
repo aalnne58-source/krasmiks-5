@@ -1,6 +1,35 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { products } from '../data/products.js'
 import './ProductCard.css'
+
+const IMAGE_COUNT = 82;
+const IMAGE_STRIDE = 31;
+
+function hashString(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    h = (h * 31 + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h);
+}
+
+let imageByProductId = null;
+
+function getImageNum(product) {
+  if (!imageByProductId) {
+    imageByProductId = new Map();
+    const seenInGroup = new Map();
+    for (const p of products) {
+      const groupKey = `${p.categorySlug}|${p.brand}`;
+      const position = seenInGroup.get(groupKey) || 0;
+      seenInGroup.set(groupKey, position + 1);
+      const start = hashString(groupKey) % IMAGE_COUNT;
+      imageByProductId.set(p.id, ((start + position * IMAGE_STRIDE) % IMAGE_COUNT) + 1);
+    }
+  }
+  return imageByProductId.get(product.id) || 1;
+}
 
 export const formatPrice = (price) => {
   if (price === undefined || price === null) return '0';
@@ -15,26 +44,7 @@ export default function ProductCard({ product }) {
   const brand = product.Бренд || product.brand || 'Автохимия';
   const rawPrice = product['Цена с НДС'] || product.price || 0;
 
-  const upperName = name.toUpperCase();
-  const upperBrand = brand.toUpperCase();
-
-  let imageNum = 1;
-
-  if (upperBrand.includes('NOVOL')) {
-    imageNum = (Math.abs(name.length) % 15) + 1;
-  } else if (upperBrand.includes('MIPA') && upperName.includes('ЛАК')) {
-    imageNum = (Math.abs(name.length) % 10) + 16;
-  } else if (upperName.includes('ГРУНТ') || upperName.includes('PRIMER')) {
-    imageNum = (Math.abs(name.length) % 10) + 26;
-  } else if (upperBrand.includes('SIA') || upperName.includes('КРУГ')) {
-    imageNum = (Math.abs(name.length) % 15) + 40;
-  } else if (upperName.includes('КЛЕЙ') || upperName.includes('ГЕРМЕТИК')) {
-    imageNum = (Math.abs(name.length) % 8) + 60;
-  } else {
-    imageNum = (Math.abs(name.length) % 14) + 69;
-  }
-
-  const finalPhoto = `/products/${imageNum}.jpg`;
+  const finalPhoto = `/products/${getImageNum(product)}.jpg`;
 
   return (
     <article className="catalog_item">
