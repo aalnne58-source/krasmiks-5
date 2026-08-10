@@ -26,10 +26,6 @@ export default function Home() {
               <a href="tel:+79586016330" className="btn btn-secondary">Заказать по телефону</a>
             </div>
           </div>
-          <div className="hero__badge">
-            <span className="hero__badge-title">−15%</span>
-            <span className="hero__badge-text">на первый заказ по коду MIX15</span>
-          </div>
         </div>
       </section>
 

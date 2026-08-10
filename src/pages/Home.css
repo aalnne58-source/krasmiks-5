@@ -50,33 +50,6 @@
   background: rgba(255,255,255,0.16);
 }
 
-.hero__badge {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  color: #fff;
-  text-align: center;
-  transform: rotate(-4deg);
-}
-
-.hero__badge-title {
-  font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 800;
-}
-
-.hero__badge-text {
-  font-size: 12px;
-  max-width: 120px;
-  margin-top: 4px;
-}
-
 .section {
   padding: 48px 24px;
 }
@@ -141,9 +114,6 @@
   .hero__row {
     flex-direction: column;
     align-items: flex-start;
-  }
-  .hero__badge {
-    align-self: center;
   }
   .hero__text h1 {
     font-size: 30px;
