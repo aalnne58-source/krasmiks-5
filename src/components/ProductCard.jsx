@@ -1,34 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { products } from '../data/products.js'
+import CategoryIcon from './CategoryIcon.jsx'
+import { productImage } from '../lib/productImage.js'
 import './ProductCard.css'
 
-const IMAGE_COUNT = 82;
-const IMAGE_STRIDE = 31;
-
-function hashString(str) {
-  let h = 0;
-  for (let i = 0; i < str.length; i += 1) {
-    h = (h * 31 + str.charCodeAt(i)) | 0;
-  }
-  return Math.abs(h);
-}
-
-let imageByProductId = null;
-
-function getImageNum(product) {
-  if (!imageByProductId) {
-    imageByProductId = new Map();
-    const seenInGroup = new Map();
-    for (const p of products) {
-      const groupKey = `${p.categorySlug}|${p.brand}`;
-      const position = seenInGroup.get(groupKey) || 0;
-      seenInGroup.set(groupKey, position + 1);
-      const start = hashString(groupKey) % IMAGE_COUNT;
-      imageByProductId.set(p.id, ((start + position * IMAGE_STRIDE) % IMAGE_COUNT) + 1);
-    }
-  }
-  return imageByProductId.get(product.id) || 1;
+// Заглушка вместо фото: иконка категории и бренд. Показывается, когда для
+// товара нет достоверной картинки или файл не загрузился.
+function ImagePlaceholder({ icon, brand }) {
+  return (
+    <span className="catalog_item-placeholder">
+      <CategoryIcon icon={icon || 'paint'} size={48} />
+      <span className="catalog_item-placeholder-brand">{brand}</span>
+    </span>
+  )
 }
 
 export const formatPrice = (price) => {
@@ -44,7 +28,8 @@ export default function ProductCard({ product }) {
   const brand = product.Бренд || product.brand || 'Автохимия';
   const rawPrice = product['Цена с НДС'] || product.price || 0;
 
-  const finalPhoto = `/products/${getImageNum(product)}.jpg`;
+  const [photoFailed, setPhotoFailed] = useState(false);
+  const photo = productImage(product);
 
   return (
     <article className="catalog_item">
@@ -53,16 +38,17 @@ export default function ProductCard({ product }) {
       </div>
 
       <Link to={productPath} className="catalog_item-img-link">
-        <img
-          src={finalPhoto}
-          alt={name}
-          className="catalog_item-img"
-          loading="lazy"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = "/products/1.jpg";
-          }}
-        />
+        {photo && !photoFailed ? (
+          <img
+            src={photo}
+            alt={name}
+            className="catalog_item-img"
+            loading="lazy"
+            onError={() => setPhotoFailed(true)}
+          />
+        ) : (
+          <ImagePlaceholder icon={product.icon} brand={brand} />
+        )}
       </Link>
 
       <div className="catalog_item-desc">

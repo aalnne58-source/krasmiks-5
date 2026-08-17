@@ -5,6 +5,7 @@ import CategoryIcon from '../components/CategoryIcon.jsx'
 import ProductCard from '../components/ProductCard.jsx'
 import { useCart } from '../context/CartContext.jsx'
 import { formatPrice } from '../components/ProductCard.jsx'
+import { productImage } from '../lib/productImage.js'
 import './Product.css'
 
 export default function Product() {
@@ -13,6 +14,7 @@ export default function Product() {
   const { addItem } = useCart()
   const [qty, setQty] = useState(1)
   const [added, setAdded] = useState(false)
+  const [photoFailed, setPhotoFailed] = useState(false)
 
   const product = products.find((p) => p.slug === slug)
 
@@ -24,6 +26,8 @@ export default function Product() {
       </div>
     )
   }
+
+  const photo = productImage(product)
 
   const related = products
     .filter((p) => p.categorySlug === product.categorySlug && p.id !== product.id)
@@ -44,7 +48,16 @@ export default function Product() {
 
       <div className="product-page__layout">
         <div className="product-page__media">
-          <CategoryIcon icon={product.icon} size={96} />
+          {photo && !photoFailed ? (
+            <img
+              src={photo}
+              alt={product.name}
+              className="product-page__photo"
+              onError={() => setPhotoFailed(true)}
+            />
+          ) : (
+            <CategoryIcon icon={product.icon} size={96} />
+          )}
         </div>
 
         <div className="product-page__info">
